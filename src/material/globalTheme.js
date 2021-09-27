@@ -11,9 +11,9 @@ const globalStyleObject = createTheme({
         },
       },
     },
-    palette: {
-      type: "light",
-    },
+  },
+  palette: {
+    type: "dark",
   },
 });
 
