@@ -8,7 +8,7 @@ export const favouritesFactListSelector = (state) =>
   state.favouriteFactsSlice.favouriteFactsList;
 
 // actions
-const FAVOURITE_FACT_ADD = "FAVOURITE_FACT_ADD";
+export const FAVOURITE_FACT_ADD = "FAVOURITE_FACT_ADD";
 const FAVOURITE_FACT_DELETE = "FAVOURITE_FACT_DELETE";
 const FAVOURITE_FACTS_LIST_CLEAR = "FAVOURITE_FACTS_LIST_CLEAR";
 
@@ -30,11 +30,13 @@ export const favouriteFactClearAction = () => ({
 export const favouriteFactsReducer = (state = initalState, action) => {
   switch (action.type) {
     case FAVOURITE_FACT_ADD: {
-      const newFavouriteFactsList = { ...state.favouriteFactsList };
+      const newFavouriteFactsList = [...state.favouriteFactsList];
 
       if (newFavouriteFactsList.includes(action.fact)) {
         return state;
       }
+
+      console.log(newFavouriteFactsList);
 
       newFavouriteFactsList.push(action.fact);
       return { ...state, favouriteFactsList: newFavouriteFactsList };

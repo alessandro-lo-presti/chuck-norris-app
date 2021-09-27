@@ -12,19 +12,13 @@ import { useEffect, useState } from "react";
 import { ApiServices } from "../../../services/apiServices";
 import { useStyles } from "./factFinder.style";
 
-const FactFinder = ({ foundFactList, setFoundFactList }) => {
+const FactFinder = ({ searchClickHandler }) => {
   const classes = useStyles();
   const [selectedCategory, setSelectedCategories] = useState("");
   const [categoriesList, setCategoriesList] = useState(["all"]);
 
   const handleChange = (event) => {
     setSelectedCategories(event.target.value);
-  };
-
-  const searchClickHandler = (category) => {
-    ApiServices.getFactByCategoryApi(category).then((data) =>
-      setFoundFactList([...foundFactList, data])
-    );
   };
 
   useEffect(() => {
@@ -57,7 +51,10 @@ const FactFinder = ({ foundFactList, setFoundFactList }) => {
                 onChange={handleChange}
               >
                 {categoriesList.map((category) => (
-                  <MenuItem value={category === "all" ? "" : category}>
+                  <MenuItem
+                    key={category}
+                    value={category === "all" ? "" : category}
+                  >
                     {category}
                   </MenuItem>
                 ))}
@@ -66,7 +63,6 @@ const FactFinder = ({ foundFactList, setFoundFactList }) => {
             <Button
               className={classes.button}
               variant="contained"
-              primary
               size="small"
               onClick={() => searchClickHandler(selectedCategory)}
             >
