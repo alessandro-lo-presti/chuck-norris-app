@@ -1,10 +1,13 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
   container: {
     margin: "0 auto 30px",
     width: 300,
     padding: "18px 24px",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: 60,
+    },
   },
   factFinderHeader: {
     marginBottom: 10,
@@ -21,4 +24,4 @@ export const useStyles = makeStyles({
     position: "relative",
     top: 10,
   },
-});
+}));

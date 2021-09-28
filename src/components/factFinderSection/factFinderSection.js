@@ -60,7 +60,7 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
           onClick={clearClickHandler}
         ></i>
       </Typography>
-      {foundFactList &&
+      {foundFactList.length ? (
         foundFactList.map((fact) => (
           <Card key={fact.id} className={classes.card}>
             <CardContent>{fact.value}</CardContent>
@@ -73,7 +73,12 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
               </Button>
             </CardActions>
           </Card>
-        ))}
+        ))
+      ) : (
+        <Typography className={classes.emptyListMessage} component="p">
+          This list is empty
+        </Typography>
+      )}
     </Box>
   );
 };

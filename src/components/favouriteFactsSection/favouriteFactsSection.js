@@ -54,7 +54,7 @@ const FavouriteFactsSection = (props) => {
           onClick={favouriteFactClear}
         ></i>
       </Typography>
-      {sortedFavouriteFactsList &&
+      {sortedFavouriteFactsList.length ? (
         sortedFavouriteFactsList.map((fact) => (
           <Card key={fact.id} className={classes.card}>
             <CardContent>{fact.value}</CardContent>
@@ -64,7 +64,12 @@ const FavouriteFactsSection = (props) => {
               </Button>
             </CardActions>
           </Card>
-        ))}
+        ))
+      ) : (
+        <Typography className={classes.emptyListMessage} component="p">
+          This list is empty
+        </Typography>
+      )}
     </Box>
   );
 };

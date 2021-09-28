@@ -14,6 +14,10 @@ export const useStyles = makeStyles({
     top: 2,
     fontSize: 25,
   },
+  emptyListMessage: {
+    marginTop: 15,
+    fontSize: 25,
+  },
   card: {
     margin: "15px 0",
     width: 500,
