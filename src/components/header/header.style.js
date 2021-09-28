@@ -7,6 +7,7 @@ export const useStyles = makeStyles({
     borderRadius: 0,
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
   },
   logo: {
     height: 50,
