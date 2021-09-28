@@ -3,10 +3,6 @@ const initalState = {
   favouriteFactsList: [],
 };
 
-// selectors
-export const favouritesFactListSelector = (state) =>
-  state.favouriteFactsSlice.favouriteFactsList;
-
 // actions
 const FAVOURITE_FACT_ADD = "FAVOURITE_FACT_ADD";
 const FAVOURITE_FACT_DELETE = "FAVOURITE_FACT_DELETE";
@@ -25,6 +21,10 @@ export const favouriteFactDeleteAction = (fact) => ({
 export const favouriteFactClearAction = () => ({
   type: FAVOURITE_FACTS_LIST_CLEAR,
 });
+
+// selectors
+export const favouritesFactListSelector = (state) =>
+  state.favouriteFactsSlice.favouriteFactsList;
 
 // reducer
 export const favouriteFactsReducer = (state = initalState, action) => {

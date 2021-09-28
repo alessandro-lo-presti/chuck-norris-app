@@ -14,31 +14,14 @@ import {
 } from "../../redux/favouriteFactsSlice/favouriteFactsSlice";
 import { useStyles } from "../../material/section.style";
 
-const mapStateToProps = (state) => ({
-  favouriteFactsList: favouritesFactListSelector(state),
-});
-
-const mapDispatchToState = (dispatch) => ({
-  favouriteFactDelete: (fact) => dispatch(favouriteFactDeleteAction(fact)),
-  favouriteFactClear: () => dispatch(favouriteFactClearAction()),
-});
-
-const orderByValue = (a, b) => {
-  if (a.value < b.value) {
-    return -1;
-  }
-  if (a.value > b.value) {
-    return 1;
-  }
-  return 0;
-};
+const factsSortingByValue = (a, b) => a.value.localeCompare(b.value);
 
 const FavouriteFactsSection = (props) => {
   const classes = useStyles();
   const { favouriteFactsList, favouriteFactDelete, favouriteFactClear } = props;
 
   const sortedFavouriteFactsList = [...favouriteFactsList];
-  sortedFavouriteFactsList.sort(orderByValue);
+  sortedFavouriteFactsList.sort(factsSortingByValue);
 
   return (
     <Box
@@ -73,6 +56,15 @@ const FavouriteFactsSection = (props) => {
     </Box>
   );
 };
+
+const mapStateToProps = (state) => ({
+  favouriteFactsList: favouritesFactListSelector(state),
+});
+
+const mapDispatchToState = (dispatch) => ({
+  favouriteFactDelete: (fact) => dispatch(favouriteFactDeleteAction(fact)),
+  favouriteFactClear: () => dispatch(favouriteFactClearAction()),
+});
 
 export default connect(
   mapStateToProps,

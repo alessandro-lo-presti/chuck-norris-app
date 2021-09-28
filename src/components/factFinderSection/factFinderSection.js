@@ -14,12 +14,6 @@ import { ApiServices } from "../../services/apiServices";
 import FactFinder from "./factFinder/factFinder";
 import { useStyles } from "../../material/section.style";
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToState = (dispatch) => ({
-  favouriteFactAdd: (fact) => dispatch(favouriteFactAddAction(fact)),
-});
-
 const FactFinderSection = ({ favouriteFactAdd }) => {
   const classes = useStyles();
   const [foundFactList, setFoundFactList] = useState([]);
@@ -96,5 +90,11 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
     </Box>
   );
 };
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToState = (dispatch) => ({
+  favouriteFactAdd: (fact) => dispatch(favouriteFactAddAction(fact)),
+});
 
 export default connect(mapStateToProps, mapDispatchToState)(FactFinderSection);
