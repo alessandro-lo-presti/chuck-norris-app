@@ -7,15 +7,20 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { favouriteFactAddAction } from "../../redux/favouriteFactsSlice/favouriteFactsSlice";
 import { ApiServices } from "../../services/apiServices";
 import FactFinder from "./factFinder/factFinder";
 import { useStyles } from "../../material/section.style";
 
-const FactFinderSection = () => {
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToState = (dispatch) => ({
+  favouriteFactAdd: (fact) => dispatch(favouriteFactAddAction(fact)),
+});
+
+const FactFinderSection = ({ favouriteFactAdd }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [foundFactList, setFoundFactList] = useState([]);
 
   const searchClickHandler = (category) =>
@@ -28,7 +33,7 @@ const FactFinderSection = () => {
   const addClickHandler = (fact) => {
     const newFoundFactList = [...foundFactList].filter((f) => f.id !== fact.id);
     setFoundFactList(newFoundFactList);
-    dispatch(favouriteFactAddAction(fact));
+    favouriteFactAdd(fact);
   };
 
   const deleteClickHandler = (fact) => {
@@ -68,4 +73,4 @@ const FactFinderSection = () => {
   );
 };
 
-export default FactFinderSection;
+export default connect(mapStateToProps, mapDispatchToState)(FactFinderSection);

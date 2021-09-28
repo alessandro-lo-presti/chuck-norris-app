@@ -23,6 +23,16 @@ const mapDispatchToState = (dispatch) => ({
   favouriteFactClear: () => dispatch(favouriteFactClearAction()),
 });
 
+const orderByValue = (a, b) => {
+  if (a.value < b.value) {
+    return -1;
+  }
+  if (a.value > b.value) {
+    return 1;
+  }
+  return 0;
+};
+
 const FavouriteFactsSection = (props) => {
   const classes = useStyles();
   const { favouriteFactsList, favouriteFactDelete, favouriteFactClear } = props;
@@ -37,7 +47,7 @@ const FavouriteFactsSection = (props) => {
         ></i>
       </Typography>
       {favouriteFactsList &&
-        favouriteFactsList.map((fact) => (
+        favouriteFactsList.sort(orderByValue).map((fact) => (
           <Card key={fact.id} className={classes.card}>
             <CardContent>{fact.value}</CardContent>
             <CardActions className={classes.cardActions}>
