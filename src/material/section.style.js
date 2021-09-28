@@ -7,6 +7,7 @@ export const useStyles = makeStyles({
   title: {
     display: "flex",
     alignItems: "center",
+    marginBottom: 15,
   },
   trashIcon: {
     marginLeft: 30,
@@ -15,11 +16,10 @@ export const useStyles = makeStyles({
     fontSize: 25,
   },
   emptyListMessage: {
-    marginTop: 15,
     fontSize: 25,
   },
   card: {
-    margin: "15px 0",
+    margin: "5px 0",
     width: 500,
   },
   cardActions: {
