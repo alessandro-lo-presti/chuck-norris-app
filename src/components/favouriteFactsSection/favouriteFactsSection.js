@@ -41,7 +41,12 @@ const FavouriteFactsSection = (props) => {
   sortedFavouriteFactsList.sort(orderByValue);
 
   return (
-    <Box className={classes.sectionContainer}>
+    <Box
+      className={classes.sectionContainer}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+    >
       <Typography className={classes.title} component="h2" variant="h4">
         Favourite Chuck's facts
         <i

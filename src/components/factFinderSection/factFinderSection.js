@@ -46,7 +46,12 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
   };
 
   return (
-    <Box className={classes.sectionContainer}>
+    <Box
+      className={classes.sectionContainer}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+    >
       <FactFinder searchClickHandler={searchClickHandler} />
       <Typography className={classes.title} component="h2" variant="h4">
         Founded Chuck's facts

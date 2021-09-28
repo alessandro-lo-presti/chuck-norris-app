@@ -2,10 +2,9 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles({
   sectionContainer: {
-    padding: "30px 60px",
+    padding: "30px",
   },
   title: {
-    width: 500,
     display: "flex",
     alignItems: "center",
   },
