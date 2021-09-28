@@ -18,6 +18,10 @@ export const useStyles = makeStyles({
   emptyListMessage: {
     fontSize: 25,
   },
+  spinnerBox: {
+    marginTop: 15,
+    marginBottom: 30,
+  },
   card: {
     margin: "5px 0",
     maxWidth: 500,

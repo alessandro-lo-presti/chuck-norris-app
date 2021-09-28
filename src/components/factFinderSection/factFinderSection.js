@@ -4,6 +4,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  CircularProgress,
   Typography,
 } from "@material-ui/core";
 import { useState } from "react";
@@ -22,13 +23,17 @@ const mapDispatchToState = (dispatch) => ({
 const FactFinderSection = ({ favouriteFactAdd }) => {
   const classes = useStyles();
   const [foundFactList, setFoundFactList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const searchClickHandler = (category) =>
+  const searchClickHandler = (category) => {
+    setIsLoading(true);
     ApiServices.getFactByCategoryApi(category).then((data) => {
       const newFoundFactList = [...foundFactList];
       newFoundFactList.splice(0, 0, { id: data.id, value: data.value });
       setFoundFactList(newFoundFactList);
+      setIsLoading(false);
     });
+  };
 
   const addClickHandler = (fact) => {
     const newFoundFactList = [...foundFactList].filter((f) => f.id !== fact.id);
@@ -60,6 +65,11 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
           onClick={clearClickHandler}
         ></i>
       </Typography>
+      {isLoading && (
+        <Box className={classes.spinnerBox}>
+          <CircularProgress />
+        </Box>
+      )}
       {foundFactList.length ? (
         foundFactList.map((fact) => (
           <Card key={fact.id} className={classes.card}>
@@ -75,9 +85,13 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
           </Card>
         ))
       ) : (
-        <Typography className={classes.emptyListMessage} component="p">
-          This list is empty
-        </Typography>
+        <>
+          {!isLoading && (
+            <Typography className={classes.emptyListMessage} component="p">
+              This list is empty
+            </Typography>
+          )}
+        </>
       )}
     </Box>
   );
