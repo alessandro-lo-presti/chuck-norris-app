@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FAVOURITE_FACT_ADD } from "../../redux/favouriteFactsSlice/favouriteFactsSlice";
+import { favouriteFactAddAction } from "../../redux/favouriteFactsSlice/favouriteFactsSlice";
 import { ApiServices } from "../../services/apiServices";
 import FactFinder from "./factFinder/factFinder";
 import { useStyles } from "./factFinderSection.style";
@@ -19,14 +19,16 @@ const FactFinderSection = () => {
   const [foundFactList, setFoundFactList] = useState([]);
 
   const searchClickHandler = (category) =>
-    ApiServices.getFactByCategoryApi(category).then((data) =>
-      setFoundFactList([...foundFactList, { id: data.id, value: data.value }])
-    );
+    ApiServices.getFactByCategoryApi(category).then((data) => {
+      const newFoundFactList = [...foundFactList];
+      newFoundFactList.splice(0, 0, { id: data.id, value: data.value });
+      setFoundFactList(newFoundFactList);
+    });
 
   const addClickHandler = (fact) => {
     const newFoundFactList = [...foundFactList].filter((f) => f.id !== fact.id);
     setFoundFactList(newFoundFactList);
-    dispatch({ type: FAVOURITE_FACT_ADD, fact });
+    dispatch(favouriteFactAddAction(fact));
   };
 
   const deleteClickHandler = (fact) => {

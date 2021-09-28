@@ -8,7 +8,7 @@ export const favouritesFactListSelector = (state) =>
   state.favouriteFactsSlice.favouriteFactsList;
 
 // actions
-export const FAVOURITE_FACT_ADD = "FAVOURITE_FACT_ADD";
+const FAVOURITE_FACT_ADD = "FAVOURITE_FACT_ADD";
 const FAVOURITE_FACT_DELETE = "FAVOURITE_FACT_DELETE";
 const FAVOURITE_FACTS_LIST_CLEAR = "FAVOURITE_FACTS_LIST_CLEAR";
 
