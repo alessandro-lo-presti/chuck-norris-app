@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { favouriteFactAddAction } from "../../redux/favouriteFactsSlice/favouriteFactsSlice";
 import { ApiServices } from "../../services/apiServices";
 import FactFinder from "./factFinder/factFinder";
-import { useStyles } from "./factFinderSection.style";
+import { useStyles } from "../../material/section.style";
 
 const FactFinderSection = () => {
   const classes = useStyles();
@@ -36,11 +36,19 @@ const FactFinderSection = () => {
     setFoundFactList(newFoundFactList);
   };
 
+  const clearClickHandler = () => {
+    setFoundFactList([]);
+  };
+
   return (
     <Box className={classes.sectionContainer}>
       <FactFinder searchClickHandler={searchClickHandler} />
-      <Typography component="h2" variant="h4">
+      <Typography className={classes.title} component="h2" variant="h4">
         Founded Chuck's facts
+        <i
+          className={`${classes.trashIcon} fas fa-trash`}
+          onClick={clearClickHandler}
+        ></i>
       </Typography>
       {foundFactList &&
         foundFactList.map((fact) => (

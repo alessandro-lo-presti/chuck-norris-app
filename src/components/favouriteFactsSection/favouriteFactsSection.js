@@ -12,7 +12,7 @@ import {
   favouriteFactDeleteAction,
   favouritesFactListSelector,
 } from "../../redux/favouriteFactsSlice/favouriteFactsSlice";
-import { useStyles } from "./favouriteFatsSection.style";
+import { useStyles } from "../../material/section.style";
 
 const mapStateToProps = (state) => ({
   favouriteFactsList: favouritesFactListSelector(state),
@@ -29,8 +29,12 @@ const FavouriteFactsSection = (props) => {
 
   return (
     <Box className={classes.sectionContainer}>
-      <Typography component="h2" variant="h4">
+      <Typography className={classes.title} component="h2" variant="h4">
         Favourite Chuck's facts
+        <i
+          className={`${classes.trashIcon} fas fa-trash`}
+          onClick={favouriteFactClear}
+        ></i>
       </Typography>
       {favouriteFactsList &&
         favouriteFactsList.map((fact) => (
