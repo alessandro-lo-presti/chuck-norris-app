@@ -20,7 +20,7 @@ export const useStyles = makeStyles({
   },
   card: {
     margin: "5px 0",
-    width: 500,
+    maxWidth: 500,
   },
   cardActions: {
     justifyContent: "flex-end",
