@@ -37,6 +37,9 @@ const FavouriteFactsSection = (props) => {
   const classes = useStyles();
   const { favouriteFactsList, favouriteFactDelete, favouriteFactClear } = props;
 
+  const sortedFavouriteFactsList = [...favouriteFactsList];
+  sortedFavouriteFactsList.sort(orderByValue);
+
   return (
     <Box className={classes.sectionContainer}>
       <Typography className={classes.title} component="h2" variant="h4">
@@ -46,8 +49,8 @@ const FavouriteFactsSection = (props) => {
           onClick={favouriteFactClear}
         ></i>
       </Typography>
-      {favouriteFactsList &&
-        favouriteFactsList.sort(orderByValue).map((fact) => (
+      {sortedFavouriteFactsList &&
+        sortedFavouriteFactsList.map((fact) => (
           <Card key={fact.id} className={classes.card}>
             <CardContent>{fact.value}</CardContent>
             <CardActions className={classes.cardActions}>

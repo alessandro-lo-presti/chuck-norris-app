@@ -13,7 +13,7 @@ import { ApiServices } from "../../services/apiServices";
 import FactFinder from "./factFinder/factFinder";
 import { useStyles } from "../../material/section.style";
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToState = (dispatch) => ({
   favouriteFactAdd: (fact) => dispatch(favouriteFactAddAction(fact)),

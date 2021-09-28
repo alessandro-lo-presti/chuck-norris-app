@@ -35,11 +35,10 @@ export const favouriteFactsReducer = (state = initalState, action) => {
       if (newFavouriteFactsList.includes(action.fact)) {
         return state;
       }
-
-      console.log(newFavouriteFactsList);
-
-      newFavouriteFactsList.push(action.fact);
-      return { ...state, favouriteFactsList: newFavouriteFactsList };
+      return {
+        ...state,
+        favouriteFactsList: [...newFavouriteFactsList, action.fact],
+      };
     }
     case FAVOURITE_FACT_DELETE: {
       const newFavouriteFactsList = state.favouriteFactsList.filter(
