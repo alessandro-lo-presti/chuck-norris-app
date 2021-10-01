@@ -21,12 +21,14 @@ const FactFinderSection = ({ favouriteFactAdd }) => {
 
   const searchClickHandler = (category) => {
     setIsLoading(true);
-    ApiServices.getFactByCategoryApi(category).then((data) => {
-      const newFoundFactList = [...foundFactList];
-      newFoundFactList.splice(0, 0, { id: data.id, value: data.value });
-      setFoundFactList(newFoundFactList);
-      setIsLoading(false);
-    });
+    ApiServices.getFactByCategoryApi(category)
+      .then((data) => {
+        const newFoundFactList = [...foundFactList];
+        newFoundFactList.splice(0, 0, { id: data.id, value: data.value });
+        setFoundFactList(newFoundFactList);
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
   };
 
   const addClickHandler = (fact) => {
